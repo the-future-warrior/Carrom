@@ -11,22 +11,29 @@ public class Striker : MonoBehaviour
     [SerializeField] private Transform circle;
     [SerializeField] private Transform stikerVisual;
     private Rigidbody2D rb;
+    private Vector3 oldPosition;
 
     private float forceMagnitude = 0.0f;
     private float forceMultiplier = 5.0f;
     private Vector3 targetDirection;
+    private bool shotTaken = false;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         strikerSlider.onValueChanged.AddListener(onSliderChanged);
+        oldPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(transform.position == oldPosition && shotTaken) {
+            ResetStriker();
+        } else {
+            oldPosition = transform.position;
+        }
     }
 
     public void onSliderChanged(float xPos) {
@@ -48,6 +55,7 @@ public class Striker : MonoBehaviour
         circle.gameObject.SetActive(false);
 
         rb.AddForce(forceMagnitude * targetDirection * forceMultiplier);
+        shotTaken = true;
     }
 
     private void OnMouseDrag()
@@ -60,6 +68,11 @@ public class Striker : MonoBehaviour
         circle.transform.localScale = new Vector3(forceMagnitude, forceMagnitude, forceMagnitude);
         arrow.transform.rotation = Quaternion.Euler(0f, 0f, Quaternion.LookRotation(targetDirection, transform.forward).eulerAngles.z-180);
 
+    }
+
+    private void ResetStriker() {
+        transform.position = new Vector3(0f, -15.6f, 0f);
+        shotTaken = false;
     }
 }
 
