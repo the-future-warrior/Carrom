@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3845782168556479562}
   - component: {fileID: 3845782168556479563}
   - component: {fileID: -6963989463847611941}
+  - component: {fileID: 2051156253184441054}
+  - component: {fileID: 4627370977349508968}
   m_Layer: 0
   m_Name: Striker
   m_TagString: Untagged
@@ -101,3 +103,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.6099997
+--- !u!50 &2051156253184441054
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845782168556479556}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &4627370977349508968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845782168556479556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde804800c71bdb45ac63580af7033bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
