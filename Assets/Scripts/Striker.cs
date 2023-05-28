@@ -14,7 +14,7 @@ public class Striker : MonoBehaviour
     private Vector3 oldPosition;
 
     private float forceMagnitude = 0.0f;
-    private float forceMultiplier = 5.0f;
+    private float forceMultiplier = 7.0f;
     private Vector3 targetDirection;
     private bool shotTaken = false;
 
@@ -29,15 +29,15 @@ public class Striker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position == oldPosition && shotTaken) {
-            ResetStriker();
-        } else {
-            oldPosition = transform.position;
-        }
+        // if(transform.position == oldPosition && shotTaken) {
+        //     ResetStriker();
+        // } else {
+        //     oldPosition = transform.position;
+        // }
     }
 
     public void onSliderChanged(float xPos) {
-        transform.position = new Vector2(xPos, transform.position.y);
+        transform.position = new Vector2(xPos, -15.6f);
     }
 
     private void OnMouseDown()
