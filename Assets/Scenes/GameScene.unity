@@ -554,6 +554,8 @@ MonoBehaviour:
   - {fileID: 2000438540}
   - {fileID: 2000438539}
   - {fileID: 2000438538}
+  player1ScoreText: {fileID: 1660248300}
+  player2ScoreText: {fileID: 504250369}
 --- !u!4 &269588952
 Transform:
   m_ObjectHideFlags: 0
@@ -2261,6 +2263,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8955710165276845228, guid: 57793c9a3cb17da45a22e7ed2f63dc48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955710165756112256, guid: 57793c9a3cb17da45a22e7ed2f63dc48, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955710165756112256, guid: 57793c9a3cb17da45a22e7ed2f63dc48, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955710165756112256, guid: 57793c9a3cb17da45a22e7ed2f63dc48, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955710165756112256, guid: 57793c9a3cb17da45a22e7ed2f63dc48, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955710165756112256, guid: 57793c9a3cb17da45a22e7ed2f63dc48, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955710165756112256, guid: 57793c9a3cb17da45a22e7ed2f63dc48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955710166319172853, guid: 57793c9a3cb17da45a22e7ed2f63dc48, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
