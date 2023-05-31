@@ -53,15 +53,16 @@ public class Striker : MonoBehaviour
     {
         arrow.gameObject.SetActive(false);
         circle.gameObject.SetActive(false);
+        arrow.transform.rotation = Quaternion.identity;
 
         rb.AddForce(forceMagnitude * targetDirection * forceMultiplier);
-        shotTaken = true;
+        GameController.Instance.resetDone = false;
     }
 
     private void OnMouseDrag()
     {
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetDirection = transform.position - newPosition;
+        targetDirection = arrow.transform.position - newPosition;
 
     
         forceMagnitude = targetDirection.magnitude * 1f;
@@ -70,9 +71,9 @@ public class Striker : MonoBehaviour
 
     }
 
-    private void ResetStriker() {
-        transform.position = new Vector3(0f, -15.6f, 0f);
-        shotTaken = false;
+    public void ResetStriker() {
+        float yPos = GameController.Instance.activePlayer == GameController.Player.Player1 ? 15.6f : -15.6f;
+        transform.position = new Vector3(0f, yPos, 0f);
     }
 }
 
