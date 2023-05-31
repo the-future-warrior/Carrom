@@ -8,6 +8,7 @@ public class Pockets : MonoBehaviour
     public event EventHandler<OnPocketTriggeredEventArgs> OnPocketTriggered;
     public class OnPocketTriggeredEventArgs : EventArgs {
         public GameObject piece;
+        public Transform transform;
     }
 
     // Start is called before the first frame update
@@ -24,7 +25,8 @@ public class Pockets : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) {
         OnPocketTriggered?.Invoke(this, new OnPocketTriggeredEventArgs {
-            piece = collider.gameObject
+            piece = collider.gameObject,
+            transform = collider.transform
         });
     }
 }

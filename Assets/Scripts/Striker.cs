@@ -44,30 +44,36 @@ public class Striker : MonoBehaviour
     {
         //GetComponent<SpriteRenderer>().color = Color.red;
         //GetComponent<LineRenderer>().enabled = true;
-
-        arrow.gameObject.SetActive(true);
-        circle.gameObject.SetActive(true);
+        if(GameController.Instance.activePlayer == GameController.Player.Player1 && GameController.Instance.resetDone) {
+            arrow.gameObject.SetActive(true);
+            circle.gameObject.SetActive(true);
+        }
     }
 
     private void OnMouseUp()
     {
-        arrow.gameObject.SetActive(false);
-        circle.gameObject.SetActive(false);
-        arrow.transform.rotation = Quaternion.identity;
+        if(GameController.Instance.activePlayer == GameController.Player.Player1 && GameController.Instance.resetDone) {
+            arrow.gameObject.SetActive(false);
+            circle.gameObject.SetActive(false);
+            arrow.transform.rotation = Quaternion.identity;
 
-        rb.AddForce(forceMagnitude * targetDirection * forceMultiplier);
-        GameController.Instance.resetDone = false;
+            rb.AddForce(forceMagnitude * targetDirection * forceMultiplier);
+            GameController.Instance.resetDone = false;
+            strikerSlider.gameObject.SetActive(false);
+        }
     }
 
     private void OnMouseDrag()
     {
-        Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetDirection = arrow.transform.position - newPosition;
+        if(GameController.Instance.activePlayer == GameController.Player.Player1 && GameController.Instance.resetDone) {
+            Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetDirection = arrow.transform.position - newPosition;
 
-    
-        forceMagnitude = targetDirection.magnitude * 1f;
-        circle.transform.localScale = new Vector3(forceMagnitude, forceMagnitude, forceMagnitude);
-        arrow.transform.rotation = Quaternion.Euler(0f, 0f, Quaternion.LookRotation(targetDirection, transform.forward).eulerAngles.z-180);
+        
+            forceMagnitude = targetDirection.magnitude * 1f;
+            circle.transform.localScale = new Vector3(forceMagnitude, forceMagnitude, forceMagnitude);
+            arrow.transform.rotation = Quaternion.Euler(0f, 0f, Quaternion.LookRotation(targetDirection, transform.forward).eulerAngles.z-180);
+        }
 
     }
 

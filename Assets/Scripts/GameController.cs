@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] Rigidbody2D[] pucks;
     [SerializeField] private TMP_Text player1ScoreText;
     [SerializeField] private TMP_Text player2ScoreText;
+    [SerializeField] private Slider strikerSlider;
+    [SerializeField] private GameObject pocketParticles;
 
     public enum Player {
         Player1,
@@ -59,6 +62,8 @@ public class GameController : MonoBehaviour
                 UpdateScore(piece, queenPoints);
                 break;
         }
+
+         Instantiate(pocketParticles, e.transform.position, Quaternion.identity);
     }
 
     private void UpdateScore(GameObject piece, int points) {
@@ -101,6 +106,8 @@ public class GameController : MonoBehaviour
                 break;
             case Player.Player2:
                 activePlayer = Player.Player1;
+                strikerSlider.gameObject.SetActive(true);
+                strikerSlider.value = 0f;
                 break;
         }
     }
