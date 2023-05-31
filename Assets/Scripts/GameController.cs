@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
 
     public Player activePlayer = Player.Player1;
 
-    private List<int> scoresList = new List<int>();
+    public List<int> scoresList = new List<int>();
     public bool resetDone = true;
 
     private void Awake() {

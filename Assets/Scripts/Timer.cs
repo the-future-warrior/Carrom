@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class Timer : MonoBehaviour
             else
             {
                 Debug.Log("Time is UP!");
+                SceneManager.LoadScene ("GameOverScene");
                 TimeLeft = 0;
                 TimerOn = false;
             }
