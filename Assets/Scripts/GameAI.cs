@@ -58,7 +58,7 @@ public class GameAI : MonoBehaviour
         //Calc_BestShot(0);
     }
 
-    public void Calc_BestShot(int pID, bool checkObstalces = true)
+    public void Calc_BestShot(int pID = 2, bool checkObstalces = true)
 	{
 		strikeSpeed = 0;
 		strikeDir = Vector2.zero;

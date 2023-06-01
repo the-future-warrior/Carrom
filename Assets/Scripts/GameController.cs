@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour
 	[SerializeField] Rigidbody2D[] pucks;
     [SerializeField] private TMP_Text player1ScoreText;
     [SerializeField] private TMP_Text player2ScoreText;
+    [SerializeField] private Image player1Image;
+    [SerializeField] private Image player2Image;
+    [SerializeField] private GameObject arrow;
     [SerializeField] private Slider strikerSlider;
     [SerializeField] private GameObject pocketParticles;
 
@@ -43,6 +46,11 @@ public class GameController : MonoBehaviour
         foreach(Collider2D pocket in pocketList) {
             pocket.GetComponent<Pockets>().OnPocketTriggered += OnPiecePocketed;
         }
+
+        
+        player1Image.color = Color.green;
+        player2Image.color = Color.white;
+        arrow.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
     }
 
     private void OnPiecePocketed(object sender, Pockets.OnPocketTriggeredEventArgs e)
@@ -102,13 +110,25 @@ public class GameController : MonoBehaviour
         switch (activePlayer) {
             case Player.Player1:
                 activePlayer = Player.Player2;
-                GameAI.Instance.Calc_BestShot(2);
+                player2Image.color = Color.green;
+                player1Image.color = Color.white;
+                arrow.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                StartCoroutine(WaitForFunction());
                 break;
             case Player.Player2:
                 activePlayer = Player.Player1;
+                player1Image.color = Color.green;
+                player2Image.color = Color.white;
+                arrow.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
                 strikerSlider.gameObject.SetActive(true);
                 strikerSlider.value = 0f;
                 break;
         }
+    }
+
+    IEnumerator WaitForFunction()
+    {
+        yield return new WaitForSeconds(2);
+        GameAI.Instance.Calc_BestShot(2);
     }
 }
