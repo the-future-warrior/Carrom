@@ -24,9 +24,11 @@ public class Pockets : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
-        OnPocketTriggered?.Invoke(this, new OnPocketTriggeredEventArgs {
-            piece = collider.gameObject,
-            transform = collider.transform
-        });
+        if(collider.gameObject.layer == 9) {
+            OnPocketTriggered?.Invoke(this, new OnPocketTriggeredEventArgs {
+                piece = collider.gameObject,
+                transform = collider.transform
+            });
+        }
     }
 }

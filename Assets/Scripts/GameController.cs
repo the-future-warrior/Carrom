@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject arrow;
     [SerializeField] private Slider strikerSlider;
     [SerializeField] private GameObject pocketParticles;
+    [SerializeField] private AudioSource pocketAudioSource;
 
     public enum Player {
         Player1,
@@ -70,8 +71,8 @@ public class GameController : MonoBehaviour
                 UpdateScore(piece, queenPoints);
                 break;
         }
-
-         Instantiate(pocketParticles, e.transform.position, Quaternion.identity);
+        pocketAudioSource.Play();
+        Instantiate(pocketParticles, e.transform.position, Quaternion.identity);
     }
 
     private void UpdateScore(GameObject piece, int points) {
@@ -99,6 +100,7 @@ public class GameController : MonoBehaviour
                 }
 					
             striker.GetComponent<Striker>().ResetStriker();
+            striker.GetComponent<Striker>().ResetStrikerAudio();
 			resetDone = true;
             SwitchPlayer();
 		}

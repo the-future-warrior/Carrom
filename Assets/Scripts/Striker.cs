@@ -10,6 +10,8 @@ public class Striker : MonoBehaviour
     [SerializeField] private Transform arrow;
     [SerializeField] private Transform circle;
     [SerializeField] private Transform stikerVisual;
+
+    private AudioSource audioSource;
     private Rigidbody2D rb;
     private Vector3 oldPosition;
 
@@ -17,11 +19,13 @@ public class Striker : MonoBehaviour
     private float forceMultiplier = 7.0f;
     private Vector3 targetDirection;
     private bool shotTaken = false;
+    private bool audioPlayed = false;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         strikerSlider.onValueChanged.AddListener(onSliderChanged);
         oldPosition = transform.position;
     }
@@ -72,7 +76,7 @@ public class Striker : MonoBehaviour
         
             forceMagnitude = targetDirection.magnitude * 1f;
             circle.transform.localScale = new Vector3(forceMagnitude, forceMagnitude, forceMagnitude);
-            arrow.transform.rotation = Quaternion.Euler(0f, 0f, Quaternion.LookRotation(targetDirection, transform.forward).eulerAngles.z-180);
+            arrow.transform.rotation = Quaternion.Euler(0f, 0f, Quaternion.LookRotation(transform.forward, targetDirection.normalized).eulerAngles.z);
         }
 
     }
@@ -80,6 +84,17 @@ public class Striker : MonoBehaviour
     public void ResetStriker() {
         float yPos = GameController.Instance.activePlayer == GameController.Player.Player1 ? 15.6f : -15.6f;
         transform.position = new Vector3(0f, yPos, 0f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(!audioPlayed && other.gameObject.layer == 9 && !GameController.Instance.resetDone) { // "Piece" layer
+            audioSource.Play();
+            audioPlayed = true;
+        }
+    }
+
+    public void ResetStrikerAudio() {
+        audioPlayed = false;
     }
 }
 
